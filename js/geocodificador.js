@@ -9,7 +9,7 @@ geocodificadorModulo = (function () {
      dirección: la dirección pasada por parámetro
      coordenada: la ubicación de tipo google.maps.LatLng */
 
-    geocodificador.geocode( { address: 'direccion'}, function(results, status) {
+    geocodificador.geocode( { 'address': direccion}, function(results, status) {
       if (status == 'OK') {
         funcionALlamar(direccion, results[0].geometry.location);
       } else {
