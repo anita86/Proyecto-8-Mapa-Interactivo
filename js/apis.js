@@ -1,3 +1,4 @@
+//23/06/2019 03:49hs finalizado
 var mapa // Mapa que vamos a modificar
 
 /* Crear la variable posicionCentral con las coordenadas donde se va a centrar el mapa */
