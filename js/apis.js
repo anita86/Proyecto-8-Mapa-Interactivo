@@ -2,6 +2,7 @@
 var mapa // Mapa que vamos a modificar
 
 /* Crear la variable posicionCentral con las coordenadas donde se va a centrar el mapa */
+//Centro mi mapa en Parque Centenario
 var posicionCentral = {lat: -34.60665, lng: -58.434619} ;
 // Inicializa el mapa con un valor de zoom y una locación en el medio
 function inicializarMapa () {

@@ -16,6 +16,7 @@ marcadorModulo = (function () {
           map: mapa,
           title: document.getElementById('direccion').value,
           animation: google.maps.Animation.DROP,
+          // draggable: true
           });
   }
 
