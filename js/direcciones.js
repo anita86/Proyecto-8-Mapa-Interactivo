@@ -99,10 +99,26 @@ direccionesModulo = (function () {
          var origen = document.getElementById('desde').value;
          var destino = document.getElementById('hasta').value;
          var forma = document.getElementById('comoIr').value;
+         var intermedios = [];
+         var puntosIntermedios = document.getElementById('puntosIntermedios');
+         intermedios = [];
+
+         for (var i = 0; i < puntosIntermedios.length; i++) {
+          if (puntosIntermedios.options[i].selected) {
+            intermedios.push({
+              location: puntosIntermedios[i].value,
+              stopover: true
+            });
+          }
+        }
+
+
 
         servicioDirecciones.route({
           origin: origen,
           destination: destino,
+          waypoints: intermedios,
+          optimizeWaypoints: true,
           travelMode: google.maps.TravelMode[forma]
         }, function(response, status) {
           if (status == 'OK') {
@@ -116,6 +132,9 @@ direccionesModulo = (function () {
         marcadorModulo.agregarMarcadorRuta(origen, 'A', true)
         // Agrega el marcador del final con una B
         marcadorModulo.agregarMarcadorRuta(destino, 'B', true)
+        
+
+
 
 
   }
