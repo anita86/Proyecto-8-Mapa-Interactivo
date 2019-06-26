@@ -111,7 +111,11 @@ direccionesModulo = (function () {
             window.alert('Directions request failed due to ' + status);
           }
         });
-
+        
+        // Agrega el marcador del comienzo con una A
+        marcadorModulo.agregarMarcadorRuta(origen, 'A', true)
+        // Agrega el marcador del final con una B
+        marcadorModulo.agregarMarcadorRuta(destino, 'B', true)
 
 
   }
