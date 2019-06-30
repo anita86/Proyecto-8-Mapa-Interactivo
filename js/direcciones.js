@@ -99,21 +99,18 @@ direccionesModulo = (function () {
          var origen = document.getElementById('desde').value;
          var destino = document.getElementById('hasta').value;
          var forma = document.getElementById('comoIr').value;
-         var intermedios = [];
          var puntosIntermedios = document.getElementById('puntosIntermedios');
-         intermedios = [];
+         var intermedios = [];
 
          for (var i = 0; i < puntosIntermedios.length; i++) {
-          if (puntosIntermedios.options[i].selected) {
-            intermedios.push({
-              location: puntosIntermedios[i].value,
-              stopover: true
-            });
+           if (puntosIntermedios.options[i].selected) {
+                intermedios.push({
+                location: puntosIntermedios[i].value,
+                stopover: true
+                });
+            }
           }
-        }
-
-
-
+        
         servicioDirecciones.route({
           origin: origen,
           destination: destino,
@@ -124,26 +121,39 @@ direccionesModulo = (function () {
           if (status == 'OK') {
             mostradorDirecciones.setDirections(response);
           } else {
-            window.alert('Directions request failed due to ' + status);
+            window.alert('La solicitud falló porque ' + status);
           }
         });
         
         // Agrega el marcador del comienzo con una A
         marcadorModulo.agregarMarcadorRuta(origen, 'A', true)
-        // Agrega el marcador del final con una B
-        marcadorModulo.agregarMarcadorRuta(destino, 'B', true)
-        
-
-
+// Agrega los marcadores de los puntos intermedios con letras consecutivas.
+    for (var i = 0; i < intermedios.length; i++) {
+        // console.log(ptsIntermedios[i].location);
+        var letter = String.fromCharCode('B'.charCodeAt(0) + i)
+        marcadorModulo.agregarMarcadorRuta(intermedios[i].location, letter, false)
+    }
+    marcadorModulo.agregarMarcadorRuta(destino, String.fromCharCode('B'.charCodeAt(0) + intermedios.length), false)
 
 
   }
+
+  function borrarDireccionEnLista () {
+    document.getElementById('borrar').addEventListener('click', function () {
+    mostradorDirecciones.setMap(null);
+    mostradorDirecciones.set('directions', null);
+    })
+  }
+
+
 
   return {
     inicializar,
     agregarDireccion,
     agregarDireccionEnLista,
     agregarDireccionYMostrarEnMapa,
-    calcularYMostrarRutas
+    calcularYMostrarRutas,
+    borrarDireccionEnLista
   }
 }())
+

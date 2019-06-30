@@ -62,7 +62,7 @@ output {
     color: #d2e6e8;
 }
 
-.btn-outline:last-child {
+.btn-outline {
     margin-top: 5px;
 }
 
